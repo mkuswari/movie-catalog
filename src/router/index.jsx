@@ -7,7 +7,7 @@ const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
-    path: "/detail",
+    path: "/detail/:id",
     element: <DetailPage />,
   },
 ]);

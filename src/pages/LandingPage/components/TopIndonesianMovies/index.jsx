@@ -6,8 +6,6 @@ import { useTrendingMoviesIndonesiaQuery } from "../../../../services/moviesApi"
 const TopIndonesianMovies = () => {
   const { data, error, isLoading } = useTrendingMoviesIndonesiaQuery();
 
-  console.log(data);
-
   return (
     <section className="py-16">
       <div className="container">
