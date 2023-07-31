@@ -24,6 +24,9 @@ export const moviesApi = createApi({
     seriesVideos: builder.query({
       query: () => `/trending/tv/week?api_key=${config.apiKey}`,
     }),
+    nowPlayingMovies: builder.query({
+      query: () => `/movie/now_playing?api_key=${config.apiKey}`,
+    }),
   }),
 });
 
@@ -33,4 +36,5 @@ export const {
   useTrendingMoviesWeeklyQuery,
   useTrendingMoviesIndonesiaQuery,
   useSeriesVideosQuery,
+  useNowPlayingMoviesQuery,
 } = moviesApi;
