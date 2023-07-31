@@ -3,8 +3,6 @@ import baseConfig from "../../configs/baseConfig";
 import formatDate from "../../utils/formatDate";
 
 const CardMovie = ({ item }) => {
-  console.log(item);
-
   return (
     <div className="group">
       <div className="w-72 h-96 bg-transparent group-hover:shadow-2xl group-hover:shadow-red-600/25 rounded-xl mb-3 overflow-hidden transition-all ease-in-out duration-200">

@@ -10,6 +10,7 @@ const TrendingMovies = () => {
     <section className="py-16">
       <div className="container">
         <h2 className="text-white text-3xl font-bold">🔥 Trending Movies</h2>
+        <p className="text-white/80 text-base mt-2">Here are the movies that are trending this week</p>
         <div className="mt-8 flex gap-8 justify-between overflow-hidden">
           {error ? (
             <p>Something wrong</p>
