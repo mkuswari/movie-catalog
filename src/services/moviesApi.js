@@ -21,6 +21,9 @@ export const moviesApi = createApi({
       query: () =>
         `/discover/movie?api_key=${config.apiKey}&sort_by=popularity.desc&with_original_language=id`,
     }),
+    seriesVideos: builder.query({
+      query: () => `/trending/tv/week?api_key=${config.apiKey}`,
+    }),
   }),
 });
 
@@ -29,4 +32,5 @@ export const {
   useGenreMoviesQuery,
   useTrendingMoviesWeeklyQuery,
   useTrendingMoviesIndonesiaQuery,
+  useSeriesVideosQuery,
 } = moviesApi;
