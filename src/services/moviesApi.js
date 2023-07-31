@@ -14,7 +14,14 @@ export const moviesApi = createApi({
     genreMovies: builder.query({
       query: () => `/genre/movie/list?api_key=${config.apiKey}`,
     }),
+    trendingMoviesWeekly: builder.query({
+      query: () => `/trending/movie/week?api_key=${config.apiKey}`,
+    }),
   }),
 });
 
-export const { usePopularMoviesQuery, useGenreMoviesQuery } = moviesApi;
+export const {
+  usePopularMoviesQuery,
+  useGenreMoviesQuery,
+  useTrendingMoviesWeeklyQuery,
+} = moviesApi;

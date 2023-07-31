@@ -19,17 +19,14 @@ const BannerMovie = ({ item, genres }) => {
             {item.genre_ids.map((genre, index) => (
               <span
                 key={index}
-                className="bg-red-600 px-2 rounded-lg text-white text-sm"
+                className="bg-red-600 shadow-xl px-2 rounded-lg text-white text-sm"
               >
                 {getGenre(genre)}
               </span>
             ))}
           </div>
           <p className="text-white leading-relaxed drop-shadow-xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Consequuntur aliquid exercitationem quisquam non doloribus vitae
-            blanditiis architecto. Tempore, sed laborum modi voluptatibus
-            deserunt corrupti nisi alias eius error dolorem ullam.
+            {item.overview}
           </p>
         </div>
       </div>
