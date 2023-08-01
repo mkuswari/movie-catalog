@@ -2,6 +2,7 @@ import { CardMovie } from "../../../../components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useSeriesVideosQuery } from "../../../../services/moviesApi";
+import { HashLoader } from "react-spinners";
 
 const TopSeries = () => {
   const { data, error, isLoading } = useSeriesVideosQuery();
@@ -12,9 +13,13 @@ const TopSeries = () => {
         <h2 className="text-white text-3xl font-bold">🌟 Top Series</h2>
         <div className="mt-8 flex gap-8 justify-between overflow-hidden">
           {error ? (
-            <p>Something went error</p>
+            <div className="mx-auto py-6">
+              <p className="text-xl text-red-600">Something error</p>
+            </div>
           ) : isLoading ? (
-            <p>Loading...</p>
+            <div className="mx-auto my-6">
+              <HashLoader color="#ff3600" size={80} />
+            </div>
           ) : data ? (
             <Swiper
               breakpoints={{

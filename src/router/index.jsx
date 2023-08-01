@@ -1,14 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
 import { DetailPage, LandingPage } from "../pages";
+import { MainLayout } from "../layouts";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LandingPage />,
+    element: (
+      <MainLayout>
+        <LandingPage />
+      </MainLayout>
+    ),
   },
   {
     path: "/detail/:id",
-    element: <DetailPage />,
+    element: (
+      <MainLayout>
+        <DetailPage />
+      </MainLayout>
+    ),
   },
 ]);
 

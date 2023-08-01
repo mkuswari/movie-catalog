@@ -8,6 +8,7 @@ import {
   useGenreMoviesQuery,
   usePopularMoviesQuery,
 } from "../../../../services/moviesApi";
+import { HashLoader } from "react-spinners";
 
 const HeroBanner = () => {
   const {
@@ -24,9 +25,15 @@ const HeroBanner = () => {
   return (
     <>
       {movieError || genreError ? (
-        <p>Something wrong</p>
+        <div className="mx-auto py-6">
+          <p className="text-xl text-red-600">Something error</p>
+        </div>
       ) : movieLoading || genreLoading ? (
-        <p>Loading...</p>
+        <div className="h-[34rem] md:h-[46rem] animate-pulse flex items-center justify-center">
+          <div className="my-6">
+            <HashLoader color="#ff3600" size={80} />
+          </div>
+        </div>
       ) : movieData || genreData ? (
         <Swiper
           slidesPerView={1}

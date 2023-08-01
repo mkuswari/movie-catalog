@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useNowPlayingMoviesQuery } from "../../../../services/moviesApi";
 import { CardMovie } from "../../../../components";
+import { HashLoader } from "react-spinners";
 
 const NowPlaying = () => {
   const { data, error, isLoading } = useNowPlayingMoviesQuery();
@@ -12,9 +13,13 @@ const NowPlaying = () => {
         <h2 className="text-white text-3xl font-bold">🎞️ Now Playing</h2>
         <div className="mt-8 flex gap-8 justify-between overflow-hidden">
           {error ? (
-            <p>Something wrong</p>
+            <div className="mx-auto py-6">
+              <p className="text-xl text-red-600">Something error</p>
+            </div>
           ) : isLoading ? (
-            <p>Loading...</p>
+            <div className="mx-auto my-6">
+              <HashLoader color="#ff3600" size={80} />
+            </div>
           ) : data ? (
             <Swiper
               breakpoints={{
