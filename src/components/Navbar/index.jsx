@@ -28,7 +28,7 @@ const Navbar = () => {
         </Link>
         <nav>
           <ul className="flex gap-10 items-center">
-            <li>
+            {/* <li>
               <Link to={`/about`} className="text-slate-200">
                 Movies
               </Link>
@@ -37,7 +37,7 @@ const Navbar = () => {
               <Link to={`/tv-shows`} className="text-slate-200">
                 TV Shows
               </Link>
-            </li>
+            </li> */}
             <li className="flex gap-2">
               {search ? (
                 <>

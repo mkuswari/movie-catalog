@@ -11,7 +11,7 @@ const BannerMovie = ({ item, genres }) => {
   };
 
   return (
-    <Link to={`/detail/${item?.id}`}>
+    <Link to={`/movie/${item?.id}`}>
       <div className="h-[34rem] md:h-[46rem] relative">
         <div className="container">
           <div className="absolute top-1/3 max-w-xl z-10">
