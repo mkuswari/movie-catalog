@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import baseConfig from "../../configs/baseConfig";
 import formatDate from "../../utils/formatDate";
 import { Link } from "react-router-dom";
+import ImageNotFound from "../../assets/image-404.png";
 
 const CardTopMovie = ({ item, index }) => {
   return (
@@ -14,7 +15,11 @@ const CardTopMovie = ({ item, index }) => {
             </h2>
           </div>
           <img
-            src={`${baseConfig.baseImageUrl}${item?.poster_path}`}
+            src={
+              item?.poster_path
+                ? `${baseConfig.baseImageUrl}${item?.poster_path}`
+                : ImageNotFound
+            }
             alt="Movie Image"
             className="w-full h-full object-cover object-center group-hover:scale-125 transition-all ease-in-out duration-300"
           />

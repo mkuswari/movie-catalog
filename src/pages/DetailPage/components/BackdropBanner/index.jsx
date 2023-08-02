@@ -1,7 +1,10 @@
-import { FiPlayCircle } from "react-icons/fi";
+import { FiCalendar, FiClock, FiPlayCircle } from "react-icons/fi";
 import { useParams } from "react-router-dom";
 import { useDetailMovieQuery } from "../../../../services/moviesApi";
 import baseConfig from "../../../../configs/baseConfig";
+import ImageNotFound from "../../../../assets/image-404.png";
+import { HashLoader } from "react-spinners";
+import formatDate from "../../../../utils/formatDate";
 
 const BackdropBanner = () => {
   const { id } = useParams();
@@ -11,16 +14,26 @@ const BackdropBanner = () => {
   return (
     <div className="h-[34rem] md:h-[50rem] relative">
       {error ? (
-        <p>Something went error</p>
+        <div className="mx-auto py-6">
+          <p className="text-xl text-red-600">Something error</p>
+        </div>
       ) : isLoading ? (
-        <p>Loading...</p>
+        <div className="h-[34rem] md:h-[46rem] animate-pulse flex items-center justify-center">
+          <div className="my-6">
+            <HashLoader color="#ff3600" size={80} />
+          </div>
+        </div>
       ) : data ? (
         <>
           <div className="container flex justify-center">
-            <div className="flex gap-10 items-center absolute z-40 translate-y-1/2">
+            <div className="flex gap-10 items-center absolute z-40 md:translate-y-1/2">
               <div className="w-64 h-96 rounded-xl overflow-hidden shadow-2xl hidden md:flex">
                 <img
-                  src={`${baseConfig.baseImageUrl}${data?.poster_path}`}
+                  src={
+                    data?.poster_path
+                      ? `${baseConfig.baseImageUrl}${data?.poster_path}`
+                      : ImageNotFound
+                  }
                   alt="Movie Image"
                   className="w-full h-full object-cover object-center"
                 />
@@ -33,6 +46,7 @@ const BackdropBanner = () => {
                 <h2 className="text-white drop-shadow-2xl text-5xl font-extrabold">
                   {data?.original_title}
                 </h2>
+                <p className="text-base text-slate-200 mb-4">{data?.tagline}</p>
                 <div className="flex gap-2 my-3">
                   {data?.genres.map((item, index) => (
                     <span
@@ -46,11 +60,25 @@ const BackdropBanner = () => {
                 <p className="text-white leading-relaxed drop-shadow-xl">
                   {data?.overview}
                 </p>
+                <div className="flex gap-4 my-3">
+                  <div className="text-slate-200 flex items-center gap-2">
+                    <FiCalendar />
+                    <p>{formatDate(data?.release_date)}</p>
+                  </div>
+                  <div className="text-slate-200 flex items-center gap-2">
+                    <FiClock />
+                    <p>{data?.runtime} Minutes</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <img
-            src={`${baseConfig.baseImageUrl}${data?.backdrop_path}`}
+            src={
+              data?.backdrop_path
+                ? `${baseConfig.baseImageUrl}${data?.backdrop_path}`
+                : ImageNotFound
+            }
             alt="Backdrop Image"
             className="h-full w-full object-cover object-center"
           />

@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { DetailPage, LandingPage } from "../pages";
+import { DetailPage, LandingPage, SearchPage } from "../pages";
 import { MainLayout } from "../layouts";
 
 const router = createBrowserRouter([
@@ -16,6 +16,14 @@ const router = createBrowserRouter([
     element: (
       <MainLayout>
         <DetailPage />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/search/:query/:page",
+    element: (
+      <MainLayout>
+        <SearchPage />
       </MainLayout>
     ),
   },

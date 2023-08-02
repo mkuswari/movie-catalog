@@ -1,10 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoMovie from "../../assets/logo.png";
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiX } from "react-icons/fi";
 import { useState } from "react";
 
 const Navbar = () => {
   const [search, setSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleInputSearch = (e) => {
+    e.key === "Enter" && navigate(`/search/${searchQuery}/1`);
+  };
+
+  const handleSubmitSearch = () => {
+    navigate(`/search/${searchQuery}/1`);
+  };
 
   return (
     <header className="h-20 flex items-center sticky top-0 left-0 right-0 z-50 bg-slate-800/20 backdrop-blur-xl">
@@ -28,18 +38,31 @@ const Navbar = () => {
                 TV Shows
               </Link>
             </li>
-            <li className="flex">
+            <li className="flex gap-2">
               {search ? (
-                <div className="flex items-center relative">
-                  <input
-                    type="text"
-                    className="p-2 bg-slate-800 border border-slate-500 rounded-sm text-slate-200 focus:outline-none w-60"
-                    placeholder="Search Movies..."
-                  />
-                  <button className="absolute right-1 p-2 bg-slate-800 text-slate-200">
-                    <FiSearch size={24} />
+                <>
+                  <div className="flex items-center relative">
+                    <input
+                      type="text"
+                      className="p-2 bg-slate-800 border border-slate-500 rounded-sm text-slate-200 focus:outline-none w-60"
+                      placeholder="Search Movies..."
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyUp={(e) => handleInputSearch(e)}
+                    />
+                    <button
+                      className="absolute right-1 p-2 bg-slate-800 text-slate-200"
+                      onClick={handleSubmitSearch}
+                    >
+                      <FiSearch size={24} />
+                    </button>
+                  </div>
+                  <button
+                    className={`text-slate-200`}
+                    onClick={() => setSearch(false)}
+                  >
+                    <FiX size={24} />
                   </button>
-                </div>
+                </>
               ) : null}
               <button
                 className={`text-slate-200 ${search ? "hidden" : ""}`}

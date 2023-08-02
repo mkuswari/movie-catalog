@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import baseConfig from "../../configs/baseConfig";
 import { Link } from "react-router-dom";
+import ImageNotFound from "../../assets/image-404.png";
 
 const BannerMovie = ({ item, genres }) => {
   const getGenre = (id) => {
@@ -33,7 +34,11 @@ const BannerMovie = ({ item, genres }) => {
           </div>
         </div>
         <img
-          src={`${baseConfig.baseImageUrl}${item.backdrop_path}`}
+          src={
+            item?.backdrop_path
+              ? `${baseConfig.baseImageUrl}${item.backdrop_path}`
+              : ImageNotFound
+          }
           alt="Backdrop Image"
           className="h-full w-full object-cover object-center"
         />
