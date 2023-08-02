@@ -4,9 +4,9 @@ import formatDate from "../../utils/formatDate";
 import { Link } from "react-router-dom";
 import ImageNotFound from "../../assets/image-404.png";
 
-const CardMovie = ({ item, isFullWidth }) => {
+const CardMovie = ({ item, isFullWidth, isTvSeries }) => {
   return (
-    <Link to={`/detail/${item?.id}`}>
+    <Link to={isTvSeries ? `/series/${item?.id}` : `/movie/${item?.id}`}>
       <div className="group">
         <div
           className={`${
@@ -23,9 +23,11 @@ const CardMovie = ({ item, isFullWidth }) => {
             className="w-full h-full object-cover object-center group-hover:scale-125 transition-all ease-in-out duration-300"
           />
         </div>
-        <h2 className="text-lg font-medium text-white">{item?.title}</h2>
+        <h2 className="text-lg font-medium text-white">
+          {isTvSeries ? item?.original_name : item?.title}
+        </h2>
         <p className="text-base text-slate-200">
-          {formatDate(item?.release_date)}
+          {formatDate(isTvSeries ? item?.first_air_date : item?.release_date)}
         </p>
       </div>
     </Link>
@@ -37,4 +39,5 @@ export default CardMovie;
 CardMovie.propTypes = {
   item: PropTypes.object,
   isFullWidth: PropTypes.bool,
+  isTvSeries: PropTypes.bool,
 };

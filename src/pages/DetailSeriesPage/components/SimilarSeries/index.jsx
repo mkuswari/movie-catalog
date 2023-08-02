@@ -1,16 +1,18 @@
 import { CardMovie } from "../../../../components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { useSeriesVideosQuery } from "../../../../services/moviesApi";
+import { useParams } from "react-router-dom";
+import { useSimilarSeriesQuery } from "../../../../services/moviesApi";
 import { HashLoader } from "react-spinners";
 
-const TopSeries = () => {
-  const { data, error, isLoading } = useSeriesVideosQuery();
+const SimilarSeries = () => {
+  const { id } = useParams();
+  const { data, error, isLoading } = useSimilarSeriesQuery(id);
 
   return (
-    <section className="pt-16">
+    <section className="py-16">
       <div className="container">
-        <h2 className="text-white text-3xl font-bold">🌟 Top Series</h2>
+        <h2 className="text-white text-3xl font-bold">Similar Movies</h2>
         <div className="mt-8 flex gap-8 justify-between overflow-hidden">
           {error ? (
             <div className="mx-auto py-6">
@@ -37,11 +39,13 @@ const TopSeries = () => {
                 },
               }}
             >
-              {data.results.map((item) => (
-                <SwiperSlide key={item.id}>
-                  <CardMovie item={item} isTvSeries={true} />
-                </SwiperSlide>
-              ))}
+              {data.results.map((item) => {
+                return (
+                  <SwiperSlide key={item.id}>
+                    <CardMovie item={item} isTvSeries />
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           ) : null}
         </div>
@@ -50,4 +54,4 @@ const TopSeries = () => {
   );
 };
 
-export default TopSeries;
+export default SimilarSeries;

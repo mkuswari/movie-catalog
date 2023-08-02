@@ -1,16 +1,19 @@
 import { CardMovie } from "../../../../components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { useSeriesVideosQuery } from "../../../../services/moviesApi";
+import { useParams } from "react-router-dom";
+import { useRecomendationSeriesQuery } from "../../../../services/moviesApi";
 import { HashLoader } from "react-spinners";
 
-const TopSeries = () => {
-  const { data, error, isLoading } = useSeriesVideosQuery();
+const RecomendationSeries = () => {
+  const { id } = useParams();
+
+  const { data, error, isLoading } = useRecomendationSeriesQuery(id);
 
   return (
-    <section className="pt-16">
+    <div className="py-16">
       <div className="container">
-        <h2 className="text-white text-3xl font-bold">🌟 Top Series</h2>
+        <h2 className="text-white text-3xl font-bold">Recomendation Movies</h2>
         <div className="mt-8 flex gap-8 justify-between overflow-hidden">
           {error ? (
             <div className="mx-auto py-6">
@@ -39,15 +42,15 @@ const TopSeries = () => {
             >
               {data.results.map((item) => (
                 <SwiperSlide key={item.id}>
-                  <CardMovie item={item} isTvSeries={true} />
+                  <CardMovie item={item} isTvSeries />
                 </SwiperSlide>
               ))}
             </Swiper>
           ) : null}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default TopSeries;
+export default RecomendationSeries;

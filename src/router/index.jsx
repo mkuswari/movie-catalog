@@ -1,5 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import { DetailPage, LandingPage, SearchPage } from "../pages";
+import {
+  DetailPage,
+  DetailSeriesPage,
+  LandingPage,
+  MoviesCatalogPages,
+  SearchPage,
+  SeriesCatalogPages,
+} from "../pages";
 import { MainLayout } from "../layouts";
 
 const router = createBrowserRouter([
@@ -12,10 +19,34 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/detail/:id",
+    path: "/movie/:id",
     element: (
       <MainLayout>
         <DetailPage />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/series/:id",
+    element: (
+      <MainLayout>
+        <DetailSeriesPage />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/movies-catalog",
+    element: (
+      <MainLayout>
+        <MoviesCatalogPages />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/series-catalog",
+    element: (
+      <MainLayout>
+        <SeriesCatalogPages />
       </MainLayout>
     ),
   },
